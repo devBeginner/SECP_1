@@ -1,12 +1,37 @@
-#include <stdio.h>
-
+#include <iostream>
 using namespace std;
 
-int main(int argc, const char* argv[])
+
+int getModulo(int num, int divisor)
 {
-	// Prints each argument on the command line.
-	for (int i = 0; i < argc; i++)
+	// wenn devisor gleich 0 ist
+	if (divisor == 0)
 	{
-		printf("arg %d: %s\n", i, argv[i]);
+		cout << "Error: wir können nicht durch 0 teilen \n";
+		return -1;
 	}
+
+	// negative Werte
+	if (divisor < 0) divisor = -divisor;
+	if (num < 0)     num = -num;
+
+	// produkt der summe von divisor sollte kleiner oder gleich num sein
+	int i = 1;
+	int product = 0;
+	while (product <= num)
+	{
+		product = divisor * i;
+		i++;
+	}
+
+	// rest zurückgeben
+	return num - (product - divisor);
+}
+
+
+int main()
+{
+	cout << getModulo(87654, 13);
+	std::cin.get();
+	return 0;
 }
